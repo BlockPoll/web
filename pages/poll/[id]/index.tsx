@@ -22,6 +22,7 @@ import Loader from '../../../components/Loader';
 import { useRouter } from 'next/router';
 import { DefaultProps } from '../..';
 import Button from '../../../components/Button';
+import Head from 'next/head';
 
 const PollResult: NextPage<DefaultProps> = (props) => {
   const host = props.host ? props.host : '';
@@ -71,79 +72,84 @@ const PollResult: NextPage<DefaultProps> = (props) => {
 
   Chart.register();
   return (
-    <div className={BaseStyle['child-content']}>
-      <h1
-        className={`${BaseStyle['heading']} ${BaseStyle['main-heading']} ${style['poll-heading']}`}
-      >
-        <span className={style['poll-result-label']}>
-          Poll Results{' '}
-          <MdRefresh
-            className={`${BaseStyle['fa-button']} ${style['fa-refresh']}`}
-            onClick={() => {
-              setRefresh(!refresh);
-            }}
-          />
-        </span>
-      </h1>
-
-      {loading ? (
-        <Loader />
-      ) : !pollExtended?.poll.question ? (
-        <div className={style['results']}>
-          <h3>No poll found for supplied id</h3>
-        </div>
-      ) : (
-        <div className={style['results']}>
-          <h2 className={style['question']}>
-            Q) {pollExtended.poll.question}{' '}
-          </h2>
-
-          <Bar
-            className={style['poll-chart']}
-            data={getGraphData(pollExtended.poll)}
-            options={{
-              aspectRatio: 3,
-              maintainAspectRatio: true,
-              indexAxis: 'y',
-              responsive: true,
-              plugins: {
-                legend: {
-                  display: true,
-                  position: 'top',
-                },
-              },
-              scales: {
-                linear: {
-                  axis: 'y',
-                  grid: {
-                    display: false,
-                  },
-                  ticks: {
-                    stepSize: 1,
-                  },
-                },
-              },
-            }}
-          />
-          <div className={style['poll-url']}>
-            <Button
-              design={'secondary'}
-              type={'button'}
-              label={'Cast Vote'}
-              onClick={() => router.push(pollUrl)}
-            />
-            <Button
-              design={'secondary'}
-              type={'button'}
-              label={'Copy Vote URL'}
+    <>
+      <Head>
+        <title>Poll Results | BlockPoll</title>
+      </Head>
+      <div className={BaseStyle['child-content']}>
+        <h1
+          className={`${BaseStyle['heading']} ${BaseStyle['main-heading']} ${style['poll-heading']}`}
+        >
+          <span className={style['poll-result-label']}>
+            Poll Results{' '}
+            <MdRefresh
+              className={`${BaseStyle['fa-button']} ${style['fa-refresh']}`}
               onClick={() => {
-                copyToClipboard(pollUrl, 'Vote URL copied to clipboard');
+                setRefresh(!refresh);
               }}
             />
+          </span>
+        </h1>
+
+        {loading ? (
+          <Loader />
+        ) : !pollExtended?.poll.question ? (
+          <div className={style['results']}>
+            <h3>No poll found for supplied id</h3>
           </div>
-        </div>
-      )}
-    </div>
+        ) : (
+          <div className={style['results']}>
+            <h2 className={style['question']}>
+              Q) {pollExtended.poll.question}{' '}
+            </h2>
+
+            <Bar
+              className={style['poll-chart']}
+              data={getGraphData(pollExtended.poll)}
+              options={{
+                aspectRatio: 3,
+                maintainAspectRatio: true,
+                indexAxis: 'y',
+                responsive: true,
+                plugins: {
+                  legend: {
+                    display: true,
+                    position: 'top',
+                  },
+                },
+                scales: {
+                  linear: {
+                    axis: 'y',
+                    grid: {
+                      display: false,
+                    },
+                    ticks: {
+                      stepSize: 1,
+                    },
+                  },
+                },
+              }}
+            />
+            <div className={style['poll-url']}>
+              <Button
+                design={'secondary'}
+                type={'button'}
+                label={'Cast Vote'}
+                onClick={() => router.push(pollUrl)}
+              />
+              <Button
+                design={'secondary'}
+                type={'button'}
+                label={'Copy Vote URL'}
+                onClick={() => {
+                  copyToClipboard(pollUrl, 'Vote URL copied to clipboard');
+                }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

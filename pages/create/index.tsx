@@ -15,6 +15,7 @@ import {
 import Button from '../../components/Button';
 import { DefaultProps } from '..';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const CreatePoll: NextPage<DefaultProps> = (props) => {
   const router = useRouter();
@@ -180,48 +181,57 @@ const CreatePoll: NextPage<DefaultProps> = (props) => {
   }, [optionRows, triggerChange]);
 
   return (
-    <div className={BaseStyle['child-content']}>
-      <h1 className={`${BaseStyle['heading']} ${style['main-heading']}`}>
-        Create Poll
-      </h1>
-      <form onSubmit={submitForm} id='pollform' className={style['poll-form']}>
-        <input
-          required
-          className={`${BaseStyle['input']}`}
-          type={'text'}
-          placeholder='Enter Question (Required)'
-          id='question'
-        />
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            optionRows.push(newOption(false));
-            setTriggerChange(true);
-          }}
-          className={`${style['add-option-button']} ${BaseStyle['secondary-button']}`}
-          type={'button'}
+    <>
+      <Head>
+        <title>Create Poll | BlockPoll</title>
+      </Head>
+      <div className={BaseStyle['child-content']}>
+        <h1 className={`${BaseStyle['heading']} ${style['main-heading']}`}>
+          Create Poll
+        </h1>
+        <form
+          onSubmit={submitForm}
+          id='pollform'
+          className={style['poll-form']}
         >
-          {' '}
-          <FaPlus /> Option{' '}
-        </button>
-        <span className={style['options']}>
-          <table className={style['options-table']}>
-            <tbody>{optionsRowState.map((x) => x)}</tbody>
-          </table>
-        </span>
-
-        <span className={style['create-button']}>
-          <Button
-            type={'submit'}
-            design={'primary'}
-            label={buttonLabel}
-            loading={loading}
-            className={style['poll-button']}
-            labelWithLoader
+          <input
+            required
+            className={`${BaseStyle['input']}`}
+            type={'text'}
+            placeholder='Enter Question (Required)'
+            id='question'
           />
-        </span>
-      </form>
-    </div>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              optionRows.push(newOption(false));
+              setTriggerChange(true);
+            }}
+            className={`${style['add-option-button']} ${BaseStyle['secondary-button']}`}
+            type={'button'}
+          >
+            {' '}
+            <FaPlus /> Option{' '}
+          </button>
+          <span className={style['options']}>
+            <table className={style['options-table']}>
+              <tbody>{optionsRowState.map((x) => x)}</tbody>
+            </table>
+          </span>
+
+          <span className={style['create-button']}>
+            <Button
+              type={'submit'}
+              design={'primary'}
+              label={buttonLabel}
+              loading={loading}
+              className={style['poll-button']}
+              labelWithLoader
+            />
+          </span>
+        </form>
+      </div>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
-import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { useWallet } from '@solana/wallet-adapter-react';
 import { NextPage } from 'next';
-import { FaGithub, FaGithubSquare, FaHome, FaRegCopy } from 'react-icons/fa';
+import { FaGithubSquare, FaRegCopy } from 'react-icons/fa';
 import { transformSolanaId, copyToClipboard } from '../utils/common';
 import { getProgramId } from '../utils/solana';
 import style from '../styles/Sidebar.module.scss';
@@ -10,9 +10,7 @@ import { DefaultProps } from '../pages';
 
 const Sidebar: NextPage<DefaultProps> = (props) => {
   const { publicKey } = useWallet();
-  const { connection } = useConnection();
   const { pollCount, accountBalance } = props;
-  const programId = transformSolanaId(getProgramId().toBase58(), 8);
 
   return (
     <div className={style.sidebar}>
@@ -22,9 +20,9 @@ const Sidebar: NextPage<DefaultProps> = (props) => {
             <h1 className={`${baseStyle['heading']}`}>BlockPoll</h1>
           </a>
         </Link>
-        <h3 className={`${baseStyle['heading']} ${style['heading-text']}`}>
-          <em>Polls on Solana Blockchain</em>
-        </h3>
+        <h4 className={`${baseStyle['heading']} ${style['heading-text']}`}>
+          <em>Decentralized Blockchain-based Polling</em>
+        </h4>
 
         <>
           {publicKey ? (

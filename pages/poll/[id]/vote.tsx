@@ -17,6 +17,7 @@ import { useRouter } from 'next/router';
 import Button from '../../../components/Button';
 import Loader from '../../../components/Loader';
 import { DefaultProps } from '../..';
+import Head from 'next/head';
 
 require('@solana/wallet-adapter-react-ui/styles.css');
 
@@ -127,6 +128,9 @@ const PollVote: NextPage<DefaultProps> = (props) => {
 
   return (
     <>
+      <Head>
+        <title>Cast Vote | BlockPoll</title>
+      </Head>
       <div className={BaseStyle['child-content']}>
         <h1 className={`${BaseStyle['heading']} ${BaseStyle['main-heading']}`}>
           Cast Vote
