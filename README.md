@@ -1,34 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BlockPoll Web Application
 
-## Getting Started
+BlockPoll is a blockchain-based polling application where users can create polls, cast votes on polls, view poll results and share polls. It is built on **Solana Blockchain**.
 
-First, run the development server:
+This is a pure web3 application - meaning there is no intermediate database involved. All of the poll data is stored on blockchain.
 
-```bash
-npm run dev
-# or
-yarn dev
+## Website
+
+The application is live and hosted at [https://blockpoll.io](https://blockpoll.io)
+
+## Solana on-chain program (smart contract)
+
+The on-chain program source code is available on [GitHub](https://github.com/BlockPoll/program).
+
+- The program is deployed on Solana `devnet` cluster.
+- Program Address: [GnS5xMqf5NaY7HgbwFneyLNktT8NNNKi4rA2JEmnYdzi](https://explorer.solana.com/address/GnS5xMqf5NaY7HgbwFneyLNktT8NNNKi4rA2JEmnYdzi?cluster=devnet)
+
+## Wallet integration
+
+BlockPoll allows users to connect with multiple wallets - Eg: Solflare, Sollet, Phantom, etc. Users will have to connect their wallet for following operations:
+
+- Create Poll
+- Cast Vote on poll.
+
+---
+
+## Build and Run
+
+Requires [NodeJs](https://nodejs.org/en/).
+
+### Install dependencies
+
+```sh
+$ yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Start development server
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+$ yarn dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Environment variables
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The application requires following environment variables:
 
-## Learn More
+- `NEXT_PUBLIC_PROGRAM_ID` - BlockPoll on-chain program address.
 
-To learn more about Next.js, take a look at the following resources:
+Create a new file `.env.local` in the root of the application and add `NEXT_PUBLIC_PROGRAM_ID=GnS5xMqf5NaY7HgbwFneyLNktT8NNNKi4rA2JEmnYdzi` (or your own self-deployed blockpoll program id) to it. That's it!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Author
 
-## Deploy on Vercel
+Authored by [Rijul Gulati](https://github.com/RijulGulati)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I certainly need help maintaining this. Feel free to open pull request or raise an issue.
+
+# License
+
+[MIT](https://github.com/BlockPoll/web/blob/main/LICENSE)
+
+## Enjoy!
