@@ -92,8 +92,7 @@ const Sidebar: NextPage<DefaultProps> = (props) => {
             <Link href={'https://github.com/BlockPoll'}>
               <a target={'_blank'}>
                 <span className={style['sidebar-github']}>
-                  <b>Source Code</b>{' '}
-                  <FaGithubSquare style={{ fontSize: '24px' }} />
+                  Source Code <FaGithubSquare style={{ fontSize: '24px' }} />
                 </span>
               </a>
             </Link>
