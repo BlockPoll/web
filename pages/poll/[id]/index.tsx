@@ -14,6 +14,7 @@ import {
 } from '../../../utils/solana';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import {
+  BASE_URL,
   copyToClipboard,
   showToaster,
   TOAST_TYPE,
@@ -25,7 +26,7 @@ import Button from '../../../components/Button';
 import Head from 'next/head';
 
 const PollResult: NextPage<DefaultProps> = (props) => {
-  const host = props.host ? props.host : '';
+  const host = BASE_URL;
   const router = useRouter();
   const [refresh, setRefresh] = useState<boolean>(false);
   const [pollExtended, setPollExtended] = useState<PollWithPubkey>();
@@ -167,15 +168,6 @@ const getGraphData = (poll: Poll) => {
   };
 
   return data;
-};
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log(context.req);
-  return {
-    props: {
-      host: `http://${context.req.headers.host}`,
-    },
-  };
 };
 
 export default PollResult;
