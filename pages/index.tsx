@@ -82,7 +82,7 @@ const Home: NextPage<DefaultProps> = (props) => {
   return (
     <>
       <Head>
-        <title>${metaTitle}</title>
+        <title>{metaTitle}</title>
         <meta
           name='description'
           content={metaDescription}
