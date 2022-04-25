@@ -7,6 +7,7 @@ import style from '../styles/Sidebar.module.scss';
 import baseStyle from '../styles/Base.module.scss';
 import Link from 'next/link';
 import { DefaultProps } from '../pages';
+import Image from 'next/image';
 
 const Sidebar: NextPage<DefaultProps> = (props) => {
   const { publicKey } = useWallet();
@@ -88,14 +89,34 @@ const Sidebar: NextPage<DefaultProps> = (props) => {
               }
             />
           </p>
-          <p>
-            <Link href={'https://github.com/BlockPoll'}>
-              <a target={'_blank'}>
-                <span className={style['sidebar-github']}>
-                  Source Code <FaGithubSquare style={{ fontSize: '24px' }} />
-                </span>
-              </a>
-            </Link>
+          {/* <hr className={style['sidebar-divider']} /> */}
+          <p className={style['powered-by']}>
+            <div className={style['vercel-link']}>
+              <Link
+                href={
+                  'https://vercel.com?utm_source=blockpoll&utm_campaign=oss'
+                }
+              >
+                <a target='_blank' rel='noopener noreferrer'>
+                  <Image
+                    alt='Powered by Vercel'
+                    width={'180px'}
+                    height={'30%'}
+                    src='/assets/images/powered-by-vercel.svg'
+                  />
+                </a>
+              </Link>
+            </div>
+
+            <div className={style['links']}>
+              <Link href={'https://github.com/BlockPoll'}>
+                <a target={'_blank'}>
+                  <span>
+                    <FaGithubSquare style={{ fontSize: '28px' }} />
+                  </span>
+                </a>
+              </Link>
+            </div>
           </p>
         </div>
       </div>
