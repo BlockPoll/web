@@ -20,7 +20,7 @@ The on-chain program source code is available on [GitHub](https://github.com/Blo
 BlockPoll allows users to connect with multiple wallets - Eg: Solflare, Sollet, Phantom, etc. Users will have to connect their wallet for following operations:
 
 - Create Poll
-- Cast Vote on poll.
+- Cast Vote on poll
 
 ---
 
@@ -46,7 +46,19 @@ The application requires following environment variables:
 
 - `NEXT_PUBLIC_PROGRAM_ID` - BlockPoll on-chain program address.
 
-Create a new file `.env.local` in the root of the application and add `NEXT_PUBLIC_PROGRAM_ID=GnS5xMqf5NaY7HgbwFneyLNktT8NNNKi4rA2JEmnYdzi` (or your own self-deployed blockpoll program id) to it. That's it!
+Create a new file `.env.local` in application root and add `NEXT_PUBLIC_PROGRAM_ID=<blockpoll_program_address>` to it.
+
+Eg: `NEXT_PUBLIC_PROGRAM_ID=EoDZ9sR4bW1AE1Qme3UA1Yn1n6SWSDUzeawyYeBzkxbY`
+
+That's it!
+
+## Important
+
+Please **DO NOT** use `GnS5xMqf5NaY7HgbwFneyLNktT8NNNKi4rA2JEmnYdzi` program address for local development. You may use the following addresses (or deploy your own) when developing locally:
+
+- `EoDZ9sR4bW1AE1Qme3UA1Yn1n6SWSDUzeawyYeBzkxbY`
+
+Program code and deployment instructions are available on [GitHub](https://github.com/BlockPoll/program)
 
 ---
 
@@ -56,10 +68,8 @@ Authored by [Rijul Gulati](https://github.com/RijulGulati)
 
 ## Contributions
 
-I certainly need help maintaining this. Feel free to open pull request or raise an issue.
+Found a bug or want to discuss something (Enhancement/Bug fixes/UX design)? Feel free to create an issue or raise a pull request.
 
 # License
 
 [MIT](https://github.com/BlockPoll/web/blob/main/LICENSE)
-
-## Enjoy!
