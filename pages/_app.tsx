@@ -23,6 +23,7 @@ import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 
 import style from '../styles/Base.module.scss';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps: { ...pageProps } }: AppProps) {
   const network = WalletAdapterNetwork.Devnet;
@@ -47,6 +48,9 @@ function MyApp({ Component, pageProps: { ...pageProps } }: AppProps) {
 
   return (
     <>
+      <Head>
+        <meta name='viewport' content='width=1280px' />
+      </Head>
       <ToastContainer position={'top-right'} closeOnClick />
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
