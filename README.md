@@ -68,7 +68,16 @@ Authored by [Rijul Gulati](https://github.com/RijulGulati)
 
 ## Contributions
 
-Found a bug or want to discuss something (Enhancement/Bug fixes/UX design)? Feel free to create an issue or raise a pull request.
+All kinds of contributions are welcome. Feel free to create an issue or raise a pull request.
+
+## Sponsors
+
+<div style="display: flex; align-items: center">
+    <span>
+        <img src="https://raw.githubusercontent.com/BlockPoll/web/main/public/assets/images/vercel-logotype-dark.svg" width="120px"/>
+    </span>
+    <p style="margin-left: 10px"> for infrastructure </p>
+</div>
 
 # License
 
