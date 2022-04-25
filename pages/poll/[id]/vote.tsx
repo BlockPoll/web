@@ -34,7 +34,6 @@ const PollVote: NextPage<DefaultProps> = (props) => {
   const { setAccountBalance, setPollCount } = props;
 
   const { id } = router.query;
-  debugger;
   useEffect(() => {
     if (id) {
       let pollId = Array.isArray(id) ? id[0] : id;
@@ -58,10 +57,12 @@ const PollVote: NextPage<DefaultProps> = (props) => {
   }, [id]);
 
   useEffect(() => {
-    if (publicKey && setAccountBalance && setPollCount) {
-      getAccountBalance(connection, publicKey).then((bal) => {
-        setAccountBalance(bal);
-      });
+    if (setAccountBalance && setPollCount) {
+      if (publicKey) {
+        getAccountBalance(connection, publicKey).then((bal) => {
+          setAccountBalance(bal);
+        });
+      }
 
       getPollsCount(connection, 'anonymous').then((count) => {
         setPollCount(count);

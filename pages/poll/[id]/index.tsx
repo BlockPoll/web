@@ -49,7 +49,6 @@ const PollResult: NextPage<DefaultProps> = (props) => {
           }
         })
         .catch((err) => {
-          debugger;
           showToaster('An error occured fetching poll data!', TOAST_TYPE.ERROR);
           console.log('An error occured fetching poll data: ', err);
         })
@@ -60,10 +59,12 @@ const PollResult: NextPage<DefaultProps> = (props) => {
   }, [publicKey, refresh, id]);
 
   useEffect(() => {
-    if (publicKey && setAccountBalance && setPollCount) {
-      getAccountBalance(connection, publicKey).then((bal) => {
-        setAccountBalance(bal);
-      });
+    if (setAccountBalance && setPollCount) {
+      if (publicKey) {
+        getAccountBalance(connection, publicKey).then((bal) => {
+          setAccountBalance(bal);
+        });
+      }
 
       getPollsCount(connection, 'anonymous').then((count) => {
         setPollCount(count);
