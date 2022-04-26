@@ -68,7 +68,7 @@ Authored by [Rijul Gulati](https://github.com/RijulGulati)
 
 ## Contributions
 
-All kinds of contributions are welcome. Feel free to create an issue or raise a pull request.
+All kinds of contributions are welcome. Feel free to create an issue or raise a pull request
 
 ## Sponsors
 
