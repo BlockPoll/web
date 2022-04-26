@@ -7,10 +7,6 @@ enum TOAST_TYPE {
   WARNING,
 }
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-  ? process.env.NEXT_PUBLIC_BASE_URL
-  : 'http://localhost:3000';
-
 const transformSolanaId = (
   transactionId: string | undefined,
   len: number = 13
@@ -81,7 +77,6 @@ const showToaster = (message: string, type: TOAST_TYPE) => {
 
 export {
   TOAST_TYPE,
-  BASE_URL,
   transformSolanaId,
   transformQuestion,
   copyToClipboard,

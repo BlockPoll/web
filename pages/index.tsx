@@ -16,7 +16,6 @@ import Button from '../components/Button';
 import Loader from '../components/Loader';
 import { PollWithPubkey } from '../models/Poll';
 import {
-  BASE_URL,
   convertEpochToISODate,
   copyToClipboard,
   showToaster,

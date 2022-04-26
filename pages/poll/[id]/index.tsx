@@ -14,7 +14,6 @@ import {
 } from '../../../utils/solana';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import {
-  BASE_URL,
   copyToClipboard,
   showToaster,
   TOAST_TYPE,
