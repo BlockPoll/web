@@ -56,7 +56,11 @@ function MyApp({ Component, pageProps: { ...pageProps } }: AppProps) {
         <WalletProvider wallets={wallets} autoConnect>
           <WalletModalProvider>
             <Navbar />
-            <Sidebar accountBalance={accountBalance} pollCount={pollCount} />
+            <Sidebar
+              accountBalance={accountBalance}
+              pollCount={pollCount}
+              setAccountBalance={setAccountBalance}
+            />
             <div className={`${style['main-content']} ${style['content']}`}>
               <div className={style['card']}>
                 <Component

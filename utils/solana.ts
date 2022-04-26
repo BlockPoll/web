@@ -138,10 +138,7 @@ const getAccountBalance = async (
   let balance = 0;
 
   balance = await connection.getBalance(pubkey, 'confirmed');
-  if (balance > 0) {
-    balance /= LAMPORTS_PER_SOL;
-  }
-
+  balance = convertLamportsToSOL(balance);
   return balance;
 };
 
@@ -281,6 +278,27 @@ const confirmTransaction = async (connection: Connection, txnId: string) => {
   }
 };
 
+const requestAirdrop = async (
+  connection: Connection,
+  pubkey: PublicKey,
+  lamports = LAMPORTS_PER_SOL
+): Promise<string> => {
+  try {
+    let txnId = await connection.requestAirdrop(pubkey, lamports);
+    return txnId;
+  } catch (err) {
+    throw new Error(`Error requesting airdrop: ${err}`);
+  }
+};
+
+const convertLamportsToSOL = (lamports: number): number => {
+  let sol = 0;
+  if (lamports > 0) {
+    sol = lamports / LAMPORTS_PER_SOL;
+  }
+  return sol;
+};
+
 export {
   getPollsByOwner,
   getPollById,
@@ -290,4 +308,6 @@ export {
   createPoll,
   confirmTransaction,
   getPollsCount,
+  requestAirdrop,
+  convertLamportsToSOL,
 };

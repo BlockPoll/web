@@ -97,3 +97,14 @@
   justify-content: space-around;
   width: 88%;
 }
+
+.wallet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.airdrop-button {
+  height: 30px;
+  font-size: 14px;
+}

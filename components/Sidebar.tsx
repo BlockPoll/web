@@ -1,17 +1,36 @@
-import { useWallet } from '@solana/wallet-adapter-react';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { NextPage } from 'next';
 import { FaGithubSquare, FaRegCopy } from 'react-icons/fa';
-import { transformSolanaId, copyToClipboard } from '../utils/common';
-import { getProgramId } from '../utils/solana';
+import {
+  transformSolanaId,
+  copyToClipboard,
+  showToaster,
+  TOAST_TYPE,
+} from '../utils/common';
+import {
+  confirmTransaction,
+  convertLamportsToSOL,
+  getAccountBalance,
+  getProgramId,
+  requestAirdrop,
+} from '../utils/solana';
 import style from '../styles/Sidebar.module.scss';
 import baseStyle from '../styles/Base.module.scss';
 import Link from 'next/link';
 import { DefaultProps } from '../pages';
 import Image from 'next/image';
+import Button from './Button';
+import { useState } from 'react';
+import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 const Sidebar: NextPage<DefaultProps> = (props) => {
   const { publicKey } = useWallet();
-  const { pollCount, accountBalance } = props;
+  const { connection } = useConnection();
+  const { pollCount, accountBalance, setAccountBalance } = props;
+  const defaultAirdropButtonLabel = 'Airdrop 1 SOL';
+  const [airdropButtonLabel, setAirdropButtonLabel] = useState(
+    defaultAirdropButtonLabel
+  );
 
   return (
     <div className={style.sidebar}>
@@ -29,11 +48,58 @@ const Sidebar: NextPage<DefaultProps> = (props) => {
           {publicKey ? (
             <>
               <span className={style['sidebar-data']}>
-                <h2
-                  className={`${baseStyle['heading']} ${style['sub-heading']}`}
-                >
-                  WALLET
-                </h2>
+                <span className={style['wallet-header']}>
+                  <h2
+                    className={`${baseStyle['heading']} ${style['sub-heading']}`}
+                  >
+                    WALLET
+                  </h2>
+                  <Button
+                    design={'primary'}
+                    className={style['airdrop-button']}
+                    label={airdropButtonLabel}
+                    labelWithLoader
+                    loading={airdropButtonLabel !== defaultAirdropButtonLabel}
+                    type={'button'}
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      setAirdropButtonLabel('Creating Txn');
+                      requestAirdrop(connection, publicKey)
+                        .then((txn) => {
+                          setAirdropButtonLabel('Confirming Txn');
+                          confirmTransaction(connection, txn)
+                            .then(() => {
+                              if (setAccountBalance) {
+                                setAccountBalance(
+                                  (accountBalance ? accountBalance : 0) +
+                                    convertLamportsToSOL(LAMPORTS_PER_SOL)
+                                );
+                              }
+                              showToaster(
+                                'Airdrop successful',
+                                TOAST_TYPE.SUCCESS
+                              );
+                            })
+                            .catch(() => {
+                              showToaster(
+                                'Error confirming Transaction',
+                                TOAST_TYPE.ERROR
+                              );
+                            })
+                            .finally(() => {
+                              setAirdropButtonLabel(defaultAirdropButtonLabel);
+                            });
+                        })
+                        .catch(() => {
+                          showToaster(
+                            'Error requesting airdrop',
+                            TOAST_TYPE.ERROR
+                          );
+                          setAirdropButtonLabel(defaultAirdropButtonLabel);
+                        });
+                    }}
+                  />
+                </span>
                 <hr className={style['sidebar-divider']} />
                 <p>
                   {transformSolanaId(publicKey?.toBase58())}
@@ -91,7 +157,7 @@ const Sidebar: NextPage<DefaultProps> = (props) => {
           </p>
           {/* <hr className={style['sidebar-divider']} /> */}
           <p className={style['powered-by']}>
-            <div className={style['vercel-link']}>
+            <span className={style['vercel-link']}>
               <Link
                 href={
                   'https://vercel.com?utm_source=blockpoll&utm_campaign=oss'
@@ -106,9 +172,9 @@ const Sidebar: NextPage<DefaultProps> = (props) => {
                   />
                 </a>
               </Link>
-            </div>
+            </span>
 
-            <div className={style['links']}>
+            <span className={style['links']}>
               <Link href={'https://github.com/BlockPoll'}>
                 <a target={'_blank'}>
                   <span>
@@ -116,7 +182,7 @@ const Sidebar: NextPage<DefaultProps> = (props) => {
                   </span>
                 </a>
               </Link>
-            </div>
+            </span>
           </p>
         </div>
       </div>
