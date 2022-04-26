@@ -35,13 +35,15 @@ export interface DefaultProps {
   setPollCount?: Dispatch<SetStateAction<number>>;
   pollCount?: number;
   accountBalance?: number;
+  host?: string;
 }
 
 const Home: NextPage<DefaultProps> = (props) => {
   const metaTitle = 'BlockPoll - Decentralized blockchain-based Polling';
   const metaDescription =
     'BlockPoll is decentralized blockchain-based Polling application. It is Built on Solana Blockchain. Create Polls, Cast Vote, View Results and more...';
-  const host = BASE_URL;
+  const host = props.host ? props.host : '';
+  console.log('Using host: ', host);
   const router = useRouter();
   const [polls, setPolls] = useState<PollWithPubkey[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
