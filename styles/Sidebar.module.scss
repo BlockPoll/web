@@ -81,6 +81,9 @@
 
 .heading-text {
   margin-top: 0;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 18px;
 }
 
 .sidebar-github {
@@ -94,8 +97,7 @@
 .powered-by {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 88%;
+  justify-content: center;
 }
 
 .wallet-header {
@@ -107,4 +109,11 @@
 .airdrop-button {
   height: 30px;
   font-size: 14px;
+}
+
+.github {
+  font-weight: bold;
+  color: $primary-color;
+  display: flex;
+  align-items: center;
 }

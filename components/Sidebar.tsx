@@ -1,6 +1,6 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { NextPage } from 'next';
-import { FaGithubSquare, FaRegCopy } from 'react-icons/fa';
+import { FaRegCopy } from 'react-icons/fa';
 import {
   transformSolanaId,
   copyToClipboard,
@@ -41,8 +41,20 @@ const Sidebar: NextPage<DefaultProps> = (props) => {
           </a>
         </Link>
         <h4 className={`${baseStyle['heading']} ${style['heading-text']}`}>
-          <em>Decentralized Blockchain-based Polling</em>
+          <em>Open Source Decentralized Blockchain-based Polling</em>
         </h4>
+        <Link href={'https://github.com/BlockPoll'}>
+          <a target={'_blank'}>
+            <span className={style['github']}>
+              <Image
+                alt='GitHub'
+                width={'75px'}
+                height={'23px'}
+                src={'/assets/images/github.svg'}
+              ></Image>
+            </span>
+          </a>
+        </Link>
 
         <>
           {publicKey ? (
@@ -170,16 +182,6 @@ const Sidebar: NextPage<DefaultProps> = (props) => {
                     height={'30%'}
                     src='/assets/images/powered-by-vercel.svg'
                   />
-                </a>
-              </Link>
-            </span>
-
-            <span className={style['links']}>
-              <Link href={'https://github.com/BlockPoll'}>
-                <a target={'_blank'}>
-                  <span>
-                    <FaGithubSquare style={{ fontSize: '28px' }} />
-                  </span>
                 </a>
               </Link>
             </span>

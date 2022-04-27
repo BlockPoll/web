@@ -38,7 +38,8 @@ export interface DefaultProps {
 }
 
 const Home: NextPage<DefaultProps> = (props) => {
-  const metaTitle = 'BlockPoll - Decentralized blockchain-based Polling';
+  const metaTitle =
+    'BlockPoll - Open Source Decentralized blockchain-based Polling';
   const metaDescription =
     'BlockPoll is decentralized blockchain-based Polling application. It is Built on Solana Blockchain. Create Polls, Cast Vote, View Results and more...';
   const host = props.host ? props.host : '';
