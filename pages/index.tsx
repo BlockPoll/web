@@ -43,7 +43,6 @@ const Home: NextPage<DefaultProps> = (props) => {
   const metaDescription =
     'BlockPoll is decentralized blockchain-based Polling application. It is Built on Solana Blockchain. Create Polls, Cast Vote, View Results and more...';
   const host = props.host ? props.host : '';
-  console.log('Using host: ', host);
   const router = useRouter();
   const [polls, setPolls] = useState<PollWithPubkey[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -95,6 +94,12 @@ const Home: NextPage<DefaultProps> = (props) => {
           property='og:description'
           content={metaDescription}
           key={'home-og-description'}
+        />
+        <meta property='og:url' content={`${host}`} key={'home-og-url'} />
+        <meta
+          key={'post-og-thumbnail'}
+          property='og:image'
+          content={`${host}/assets/images/icon.png`}
         />
       </Head>
       <div className={BaseStyle['child-content']}>
