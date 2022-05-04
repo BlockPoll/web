@@ -1,3 +1,5 @@
+### Code of this repository has been moved to [https://github.com/RijulGulati/blockpoll](https://github.com/RijulGulati/blockpoll)
+
 # BlockPoll Web Application
 
 BlockPoll is a blockchain-based polling application where users can create polls, cast votes on polls, view poll results and share polls. It is built on **Solana Blockchain**.
