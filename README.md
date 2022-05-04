@@ -1,4 +1,4 @@
-### Code of this repository has been moved to [https://github.com/RijulGulati/blockpoll](https://github.com/RijulGulati/blockpoll)
+### Code has been moved to [https://github.com/RijulGulati/blockpoll](https://github.com/RijulGulati/blockpoll)
 
 # BlockPoll Web Application
 
